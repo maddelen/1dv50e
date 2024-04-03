@@ -10,6 +10,7 @@ import expressLayouts from 'express-ejs-layouts'
 import session from 'express-session'
 import logger from 'morgan'
 import helmet from 'helmet'
+import ejs from 'ejs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { router } from './routes/router.js'
@@ -113,15 +114,6 @@ try {
       .status(err.status || 500)
       .render('errors/error', { error: err })
   })
-  // app.use((err, req, res, next) => {
-  //   if (err.status === 403) {
-  //     res.render('errors/403')
-  //   } else if (err.status === 404) {
-  //     res.render('errors/404')
-  //   } else {
-  //     res.render('errors/500')
-  //   }
-  // })
 
   // Starts the HTTP server listening for connections.
   app.listen(process.env.PORT, () => {
