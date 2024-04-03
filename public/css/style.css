@@ -1,0 +1,64 @@
+body {
+  background-color: #C01C1C;
+  margin: 0;
+  height: 100vh;
+}
+
+.moraik {
+  color: white;
+  border: none;
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+
+.moraik img {
+  max-width: 100%;
+}
+
+.moraik h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.moraik p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.moraik form {
+
+}
+
+.moraik label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.moraik input[type="text"],
+.moraik input[type="email"],
+.moraik textarea,
+.moraik input[type="number"],
+.moraik select {
+  width: calc(50% - 5px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.moraik input[type="number"] {
+  width: calc(15% - 5px);
+  
+}
+
+.button-submit[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
