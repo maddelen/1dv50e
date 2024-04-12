@@ -75,4 +75,5 @@ export class AdminController {
       res.redirect('./login')
     }
   }
+
 }
