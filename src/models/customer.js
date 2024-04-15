@@ -17,7 +17,6 @@ const customerSchema = new mongoose.Schema({
   company: {
     type: String,
     required: true,
-    unique: true,
     trim: true
   },
   email: {
@@ -26,7 +25,7 @@ const customerSchema = new mongoose.Schema({
     trim: true
   },
   guests: {
-    type: String,
+    type: Number,
     required: true,
     trim: true
   },

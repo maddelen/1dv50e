@@ -1,51 +1,50 @@
 <div class="moraik">
-  <h1>
-    Välkommen till Sharp Corner!
-  </h1>
-  <p>
-    Säsongen 23/24 kommer vi att fortsätta med föranmälan till Sharp Corner till varje hemmamatch. Här nedan kan ni boka era platser. <br>
-
-    Anledningen till detta är för att vi skall kunna hålla en så bra service till er och klubben måste veta hur mycket mat vi skall planera till varje match.<br>
-
-    Anmälan stängs Kl 12 om vi har en kvällsmatch och Kl 10.00 om vi har tidig helgmatch<br>
-  </p>
   
   <!-- Form -->
   <div class="container">
-   <div class="logo">
-     <img src="./img/moraik.png" alt="Moraik" />
-   </div>
-   <div class="text">
-     Anmälan till Sharp Corner
-   </div>
+    <div class="logo">
+      <img src="./img/moraik.png" alt="Moraik" />
+    </div>
+    <div class="info-text">
+      <h1>
+      Välkommen till Sharp Corner!
+    </h1>
+    <p>
+      Säsongen 23/24 kommer vi att fortsätta med föranmälan till Sharp Corner till varje hemmamatch. Här nedan kan ni boka era platser. <br>
+  
+      Anledningen till detta är för att vi skall kunna hålla en så bra service till er och klubben måste veta hur mycket mat vi skall planera till varje match.<br>
+  
+      Anmälan stängs Kl 12 om vi har en kvällsmatch och Kl 10.00 om vi har tidig helgmatch<br>
+    </p>
+    </div>
    <form action="/" method="post">
      <div class="form-row">
        <div class="input-data">
-         <input type="text" name="name" required> <!-- Add name attribute -->
+         <input type="text" name="name" required>
          <div class="underline"></div>
          <label for="">Namn</label>
        </div>
        <div class="input-data">
-         <input type="text" name="company" required> <!-- Add name attribute -->
+         <input type="text" name="company" required>
          <div class="underline"></div>
          <label for="">Företagsnamn</label>
        </div>
      </div>
      <div class="form-row">
        <div class="input-data">
-         <input type="email" name="email" required> <!-- Add name attribute -->
+         <input type="email" name="email" required>
          <div class="underline"></div>
          <label for="">E-post</label>
        </div>
        <div class="input-data">
-         <input type="text" name="guests" required> <!-- Add name attribute -->
+         <input type="number" name="guests" required>
          <div class="underline"></div>
          <label for="">Antal deltagare</label>
        </div>
      </div>
      <div class="form-row">
        <div class="input-data">
-         <select class="event" name="event" required> <!-- Add name attribute -->
+         <select class="event" name="event" required>
            <option value="" disabled selected>Välj evenemang</option>
            <option value="event1">Event 1</option>
            <option value="event2">Event 2</option>

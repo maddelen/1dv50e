@@ -23,11 +23,9 @@ export class HomeController {
     res.render('home/index')
   }
 
-  // add a method that takes the input from the form and adds it to the database
   async formPost(req, res, next) {
     try {
-      console.log(req.body); // Log the request body to check form data
-  
+
       const customer = new Customer({
         name: req.body.name,
         company: req.body.company,
@@ -36,14 +34,13 @@ export class HomeController {
         event: req.body.event
       });
   
-      await customer.save();
+      await customer.save()
   
-      req.session.flash = { type: 'success', text: 'The user was created successfully.' };
-      res.redirect('/');
+      req.session.flash = { type: 'success', text: 'Tack för din anmälan.' }
+      res.redirect('/')
     } catch (error) {
-      req.session.flash = { type: 'danger', text: error.message };
-      res.redirect('/');
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('/')
     }
   }
-  
 }
