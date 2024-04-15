@@ -10,11 +10,13 @@ import expressLayouts from 'express-ejs-layouts'
 import session from 'express-session'
 import logger from 'morgan'
 import helmet from 'helmet'
-import ejs from 'ejs'
+import MongoStore from 'connect-mongo'
+import path from 'path'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { router } from './routes/router.js'
 import { connectDB } from './config/mongoose.js'
+
 
 try {
   // Connect to MongoDB.
@@ -22,6 +24,7 @@ try {
 
   // Creates an Express application.
   const app = express()
+
 
   // Appends security-related HTTP headers to every HTTP request sent.
   app.use(helmet())
@@ -35,11 +38,26 @@ try {
   // Set up a morgan logger using the dev format for log entries.
   app.use(logger('dev'))
 
-  // View engine setup.
+  // View engine admin or default layout.
   app.set('view engine', 'ejs')
-  app.set('views', join(directoryFullName, 'views'))
+  
+  app.set('views', path.join(directoryFullName, 'views'));
   app.use(expressLayouts)
-  app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
+  app.use((req, res, next) => {
+    if (req.session && req.session.admin) {
+      app.set('layout', join(directoryFullName, 'views', 'layouts', 'admin'))
+    } else {
+      app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
+    }
+    next()
+    console.log('SESSION', req.session)
+  })
+
+  // View engine setup.
+  // app.set('view engine', 'ejs')
+  // app.set('views', join(directoryFullName, 'views'))
+  // app.use(expressLayouts)
+  // app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
 
   // Parse requests of the content type application/x-www-form-urlencoded.
   // Populates the request object with a body object (req.body).
@@ -49,44 +67,33 @@ try {
   app.use(express.static(join(directoryFullName, '..', 'public')))
 
   // Setup and use session middleware (https://github.com/expressjs/session)
-  const options = {
-    mongoUrl: process.env.DB_CONNECTION_STRING,
-    collection: 'sessions'
-  }
 
   const sessionOptions = {
-    name: process.env.SESSION_NAME,
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    name: process.env.SESSION_NAME, // Don't use default session cookie name.
+    secret: process.env.SESSION_SECRET, // Change it!!! The secret is used to hash the session with HMAC.
+    resave: false, // Resave even if a request is not changing the session.
+    saveUninitialized: false, // Don't save a created but not modified session.
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 1 day
-      sameSite: 'strict'
+      sameSite: 'lax'
     }
   }
 
   if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
-
     sessionOptions.cookie.secure = true // serve secure cookies
   }
+
   app.use(session(sessionOptions))
 
   // Middleware to be executed before the routes.
   app.use((req, res, next) => {
-    // Flash messages - survives only a round trip.
-    if (req.session.flash) {
-      res.locals.flash = req.session.flash
-      delete req.session.flash
-    }
-
-    // Activ session username.
-    if (req.session.username) {
-      res.locals.username = req.session.username
-    }
-
     // Pass the base URL to the views.
     res.locals.baseURL = baseURL
+
+    if (req.session.loggedIn) {
+      res.locals.loggedIn = req.session.loggedIn
+    }
 
     next()
   })

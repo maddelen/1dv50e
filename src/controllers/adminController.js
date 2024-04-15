@@ -46,35 +46,38 @@ export class AdminController {
    */
   async loginAdmin(req, res, next) {
     try {
-      const { username, password } = req.body; // Assuming you are using req.body to get form data
-
-      // Example database check (replace with your actual database query logic)
-      const admin = await Admin.findOne({ username, password }).exec();
+      const { username, password } = req.body
+  
+      const admin = await Admin.findOne({ username, password }).exec()
       if (!admin) {
-        // User not found in database or invalid credentials
-        req.session.flash = { type: 'danger', text: 'Invalid username or password' };
-        return res.redirect('/login');
+        req.session.flash = { type: 'danger', text: 'Invalid username or password' }
+        return res.redirect('/login')
       }
-
-      // Set session data
-      req.session.admin = admin; // Store user information in the session
-
-      // Redirect to /admin or any other desired route for successful login
-      res.redirect('/admin');
+  
+      req.session.admin = admin
+  
+      // Save the session before redirecting
+      req.session.save(err => {
+        if (err) {
+          // Handle error
+          return next(err);
+        }
+        res.redirect('/admin')
+      });
     } catch (error) {
-      req.session.flash = { type: 'danger', text: error.message };
-      res.redirect('/login');
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('/login')
     }
   }
 
   /**
-   * Admin page.
+   * Render the admin page.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
    */
   async admin (req, res) {
-    res.render('admin/admin')
+    res.render('admin/partials/header')
   }
 
   /**
@@ -91,5 +94,4 @@ export class AdminController {
       res.redirect('./login')
     }
   }
-
 }
