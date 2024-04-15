@@ -8,12 +8,14 @@
 import express from 'express'
 import { router as adminRouter } from './adminRouter.js'
 import { router as homeRouter } from './homeRouter.js'
+import { router as loginRouter } from './loginRouter.js'
 
 export const router = express.Router()
 
 // Add routes.
 
 router.use('/', homeRouter)
+router.use('/login', loginRouter)
 router.use('/admin', adminRouter)
 
 router.get('/', (req, res) => res.json({ message: 'Hooray! Welcome to version 1 of this very simple RESTful API!' }))
