@@ -21,4 +21,20 @@ export class loginController {
   async index (reg, res, next) {
     res.render('login/login')
   }
+  
+
+  //   /**
+  //  * Displays a logged in page.
+  //  *
+  //  * @param {object} req - Express request object.
+  //  * @param {object} res - Express response object.
+  //  * @param {Function} next - Express next middleware function.
+  //  */
+  //   async login (req, res, next) {
+  //     try {
+  //       res.render('/admin')
+  //     } catch (error) {
+  //       next(error)
+  //     }
+  //   }
 }

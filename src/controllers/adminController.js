@@ -19,9 +19,8 @@ export class AdminController {
    * @param {Function} next - Express next middlewear function.
    */
   async index (reg, res, next) {
-    res.render('admin/login')
+    res.render('login/login')
   }
-
 
   /**
    * Displays a logged in page.
@@ -32,7 +31,7 @@ export class AdminController {
    */
   async login (req, res, next) {
     try {
-      res.render('admin/adminAccount')
+      res.render('admin/admin')
     } catch (error) {
       next(error)
     }
@@ -45,20 +44,37 @@ export class AdminController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
-  async loginAdmin (req, res, next) {
+  async loginAdmin(req, res, next) {
     try {
-      const admin = await Admin.authenticate(req.body.username, req.body.password)
-      req.session.regenerate((error) => {
-        if (error) {
-          throw new Error('Faild to re-generate session')
-        }
-        req.session.username = admin.username
-        res.redirect('./adminAccount')
-      })
+      const { username, password } = req.body; // Assuming you are using req.body to get form data
+
+      // Example database check (replace with your actual database query logic)
+      const admin = await Admin.findOne({ username, password }).exec();
+      if (!admin) {
+        // User not found in database or invalid credentials
+        req.session.flash = { type: 'danger', text: 'Invalid username or password' };
+        return res.redirect('/login');
+      }
+
+      // Set session data
+      req.session.admin = admin; // Store user information in the session
+
+      // Redirect to /admin or any other desired route for successful login
+      res.redirect('/admin');
     } catch (error) {
-      req.session.flash = { type: 'danger', text: error.message }
-      res.redirect('./login')
+      req.session.flash = { type: 'danger', text: error.message };
+      res.redirect('/login');
     }
+  }
+
+  /**
+   * Admin page.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
+  async admin (req, res) {
+    res.render('admin/admin')
   }
 
   /**

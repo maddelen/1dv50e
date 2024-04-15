@@ -13,3 +13,7 @@ export const router = express.Router()
 const controller = new loginController()
 
 router.get('/', (req, res, next) => controller.index(req, res, next))
+
+router.post('/login', (req, res, next) => controller.login(req, res, next))
+
+router.get('/admin', (req, res, next) => controller.admin(req, res, next))
