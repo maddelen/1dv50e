@@ -81,14 +81,12 @@ export class AdminController {
   async getCustomers(req, res, next) {
     try {
       const viewData = await Customer.find()
-      console.log('KUNDER?', viewData)
       res.render('admin/home/index', { viewData })
     } catch (error) {
       next(error)
     }
   }
   
-
   /**
    * Admin logout.
    *

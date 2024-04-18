@@ -41,11 +41,11 @@ try {
   // View engine admin or default layout.
   app.set('view engine', 'ejs')
   
-  //View engine setup.
+  // View engine setup.
   app.set('view engine', 'ejs')
   app.set('views', join(directoryFullName, 'views'))
   app.use(expressLayouts)
-  app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
+  // app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
 
   // Parse requests of the content type application/x-www-form-urlencoded.
   // Populates the request object with a body object (req.body).
@@ -83,12 +83,24 @@ try {
     }
 
     // Activ session username.
-    if (req.session.username) {
+    if (req.session.admin) {
       res.locals.username = req.session.username
     }
 
+    // console.log('USERNAME', req.session.username)
+    console.log('REQ', req.session)
+
     // Pass the base URL to the views.
     res.locals.baseURL = baseURL
+
+    let layoutFile
+    if(req.session.admin) {
+      layoutFile = 'admin/layouts/default_admin'
+    } else {
+      layoutFile = 'layouts/default'
+    }
+    
+    app.set('layout', join(directoryFullName, 'views', layoutFile))
 
     next()
   })
