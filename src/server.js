@@ -41,7 +41,6 @@ try {
   // View engine admin or default layout.
   app.set('view engine', 'ejs')
   
-
   //View engine setup.
   app.set('view engine', 'ejs')
   app.set('views', join(directoryFullName, 'views'))
@@ -77,6 +76,17 @@ try {
 
   // Middleware to be executed before the routes.
   app.use((req, res, next) => {
+    // Flash messages - survives only a round trip.
+    if (req.session.flash) {
+      res.locals.flash = req.session.flash
+      delete req.session.flash
+    }
+
+    // Activ session username.
+    if (req.session.username) {
+      res.locals.username = req.session.username
+    }
+
     // Pass the base URL to the views.
     res.locals.baseURL = baseURL
 

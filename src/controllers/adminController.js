@@ -71,16 +71,13 @@ export class AdminController {
     }
   }
 
-  // /**
-  //  * Render the admin page.
-  //  *
-  //  * @param {object} req - Express request object.
-  //  * @param {object} res - Express response object.
-  //  */
-  // async admin (req, res) {
-  //   res.render('admin/admin')
-  // }
-
+  /**
+   * Admin page.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   async getCustomers(req, res, next) {
     try {
       const viewData = await Customer.find()
