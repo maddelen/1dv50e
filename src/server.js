@@ -41,23 +41,12 @@ try {
   // View engine admin or default layout.
   app.set('view engine', 'ejs')
   
-  app.set('views', path.join(directoryFullName, 'views'));
-  app.use(expressLayouts)
-  app.use((req, res, next) => {
-    if (req.session && req.session.admin) {
-      app.set('layout', join(directoryFullName, 'views', 'layouts', 'admin'))
-    } else {
-      app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
-    }
-    next()
-    console.log('SESSION', req.session)
-  })
 
-  // View engine setup.
-  // app.set('view engine', 'ejs')
-  // app.set('views', join(directoryFullName, 'views'))
-  // app.use(expressLayouts)
-  // app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
+  //View engine setup.
+  app.set('view engine', 'ejs')
+  app.set('views', join(directoryFullName, 'views'))
+  app.use(expressLayouts)
+  app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
 
   // Parse requests of the content type application/x-www-form-urlencoded.
   // Populates the request object with a body object (req.body).
@@ -90,10 +79,6 @@ try {
   app.use((req, res, next) => {
     // Pass the base URL to the views.
     res.locals.baseURL = baseURL
-
-    if (req.session.loggedIn) {
-      res.locals.loggedIn = req.session.loggedIn
-    }
 
     next()
   })

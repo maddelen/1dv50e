@@ -6,6 +6,7 @@
  */
 
 import { Admin } from '../models/admin.js'
+import { Customer } from '../models/customer.js'
 
 /**
  * Encapsulates a controller.
@@ -70,15 +71,26 @@ export class AdminController {
     }
   }
 
-  /**
-   * Render the admin page.
-   *
-   * @param {object} req - Express request object.
-   * @param {object} res - Express response object.
-   */
-  async admin (req, res) {
-    res.render('admin/admin')
+  // /**
+  //  * Render the admin page.
+  //  *
+  //  * @param {object} req - Express request object.
+  //  * @param {object} res - Express response object.
+  //  */
+  // async admin (req, res) {
+  //   res.render('admin/admin')
+  // }
+
+  async getCustomers(req, res, next) {
+    try {
+      const viewData = await Customer.find()
+      console.log('KUNDER?', viewData)
+      res.render('admin/home/index', { viewData })
+    } catch (error) {
+      next(error)
+    }
   }
+  
 
   /**
    * Admin logout.
