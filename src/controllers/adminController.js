@@ -89,6 +89,7 @@ export class AdminController {
   async logout (req, res) {
     try {
       req.session.destroy()
+
       res.redirect('/login')
     } catch (error) {
       res.redirect('/login')
