@@ -1,4 +1,60 @@
-/* background color blue */
-body {
-    background-color: yellow;
-} 
+/* Style for the table */
+.table-striped {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for table headers */
+  .table-striped th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Style for table rows */
+  .table-striped td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Alternate row background color */
+  .table-striped tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Style for no data message */
+  .table-no-data {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for centered text in no data message */
+  .table-no-data td {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* Style for specific columns */
+  .name-table {
+    font-weight: none; /* Example: Make the Name column text bold */
+  }
+  
+  .company-table {
+    color: #000000; /* Example: Change text color for the Company column */
+  }
+  
+  .customer-table {
+    font-style: italic; /* Example: Make the Email column text italic */
+  }
+  
+  .event-table {
+    text-transform: uppercase; /* Example: Convert Event column text to uppercase */
+  }
+  
+  .guests-table {
+    text-transform: uppercase; /* Example: Center-align text in the Guests column */
+  }
+  
