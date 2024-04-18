@@ -1,17 +1,12 @@
 <header>
   <div class="wrapper">
-    <a class="navbar-brand" href="./">Anmälningar</a>
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="navbar-item">
-          <a class="navbar-link" href="./">Home</a>
         </li>
-        <% if (typeof loggedIn !== 'boolean') { %>
           <li class="navbar-item">
-            <a class="navbar-link" href="./admin/login">Login</a>
+            <a class="navbar-link" href="./admin/attendees"></a>
           </li>
-        <% } %>
-        <% if (typeof loggedIn === 'boolean') { %>
           <li>
             <a class="navbar-link" href="./admin/attendees">Anmälningar</a>
           </li>
@@ -21,7 +16,6 @@
           <li class="navbar-item">
             <a class="navbar-link" href="./admin/logout">Logout</a>
           </li>
-        <% } %>
       </ul>
     </nav>
   </div>

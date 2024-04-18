@@ -145,7 +145,7 @@ form .form-row .input-data{
   width: 300%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  background: #00853E;
   transition: all 0.4s;
 }
 

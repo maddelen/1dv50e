@@ -77,7 +77,7 @@ export class AdminController {
    * @param {object} res - Express response object.
    */
   async admin (req, res) {
-    res.render('admin/partials/header')
+    res.render('admin/admin')
   }
 
   /**
@@ -89,9 +89,9 @@ export class AdminController {
   async logout (req, res) {
     try {
       req.session.destroy()
-      res.redirect('./login')
+      res.redirect('/login')
     } catch (error) {
-      res.redirect('./login')
+      res.redirect('/login')
     }
   }
 }
