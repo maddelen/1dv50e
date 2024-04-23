@@ -90,6 +90,30 @@ export class AdminController {
     }
   }
 
+async eventForm(req, res, next) {
+  try {
+    res.render('admin/game/addEvent')
+  } catch (error) {
+    next(error)
+  }
+}
+
+// post event
+async addEvent(req, res, next) {
+  try {
+    const { eventName, eventDate, eventTime } = req.body
+
+    const event = new Event({ eventName, eventDate, eventTime })
+    await event.save()
+
+    req.session.flash = { type: 'success', text: 'Event added successfully' }
+    res.redirect('/admin/game')
+  } catch (error) {
+    req.session.flash = { type: 'danger', text: error.message }
+    res.redirect('game/addEvent')
+  }
+}
+
   /**
    * Admin logout.
    *
