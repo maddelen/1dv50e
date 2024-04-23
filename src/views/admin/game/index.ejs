@@ -1,0 +1,58 @@
+<div class="attendies-content">
+  <h1>Event</h1>
+  <table class="table-striped">
+    <thead>
+      <tr>
+        <th>Namn</th>
+        <th>Datum</th>
+        <th>Tid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (viewDataEvent?.length > 0) { %>
+        <% viewDataEvent.forEach(event => { %>
+          <tr>
+            <td class="name-table">
+              <%= event.eventName %>
+            </td>
+            <td class="company-table">
+              <%= event.eventDate %>
+            </td>
+            <td class="customer-table">
+              <%= event.eventTime %>
+            </td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+  <% } else { %>
+  <table class="table table-striped">
+    <tbody>
+        <tr>
+          <td>
+            Inga event hittades.
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <% } %>
+</div>
+
+<!-- <div class="addEvent-content">
+  <h1>Add Event</h1>
+  <form action="/addEvent" method="post">
+    <div class="form-group">
+      <label for="eventName">Event Name</label>
+      <input type="text" class="form-control" id="eventName" name="eventName" required>
+    </div>
+    <div class="form-group">
+      <label for="eventTime">Event Time</label>
+      <input type="text" class="form-control" id="eventTime" name="eventTime" required>
+    </div>
+    <div class="form-group">
+      <label for="eventDate">Event Date</label>
+      <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Event</button>
+  </form>
+</div> -->

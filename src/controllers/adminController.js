@@ -7,6 +7,7 @@
 
 import { Admin } from '../models/admin.js'
 import { Customer } from '../models/customer.js'
+import { Event } from '../models/event.js'
 
 /**
  * Encapsulates a controller.
@@ -21,21 +22,6 @@ export class AdminController {
    */
   async index (reg, res, next) {
     res.render('login/login')
-  }
-
-  /**
-   * Displays a logged in page.
-   *
-   * @param {object} req - Express request object.
-   * @param {object} res - Express response object.
-   * @param {Function} next - Express next middleware function.
-   */
-  async login (req, res, next) {
-    try {
-      res.render('admin/admin')
-    } catch (error) {
-      next(error)
-    }
   }
 
   /**
@@ -64,7 +50,7 @@ export class AdminController {
           return next(err);
         }
         res.redirect('/admin')
-      });
+      })
     } catch (error) {
       req.session.flash = { type: 'danger', text: error.message }
       res.redirect('/login')
@@ -86,7 +72,24 @@ export class AdminController {
       next(error)
     }
   }
-  
+
+// Get events
+  /**
+   * Admin page.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
+  async getEvents(req, res, next) {
+    try {
+      const viewDataEvent = await Event.find()
+      res.render('admin/game/index', { viewDataEvent })
+    } catch (error) {
+      next(error)
+    }
+  }
+
   /**
    * Admin logout.
    *
