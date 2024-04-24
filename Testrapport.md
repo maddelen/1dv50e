@@ -24,7 +24,7 @@
 <b>Förväntad resultat:</b>
 Nu borde startsidan av applikationen visas (se bild nedan).
 
-![Start](/src/images/start.png)
+![Start](/public/img/start.png)
 </details>
 
 <details>
