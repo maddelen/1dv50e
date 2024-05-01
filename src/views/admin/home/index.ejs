@@ -12,7 +12,15 @@
     </thead>
     <tbody>
       <% if (viewData?.length > 0) { %>
-        <% viewData.forEach(customer => { %>
+        <% 
+          // Sort the viewData array by the event property
+          const sortedData = viewData.sort((a, b) => {
+            if (a.event < b.event) return -1;
+            if (a.event > b.event) return 1;
+            return 0;
+          });
+        
+          sortedData.forEach(customer => { %>
           <tr>
             <td class="name-table">
               <%= customer.name %>
