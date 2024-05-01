@@ -114,6 +114,20 @@ async addEvent(req, res, next) {
   }
 }
 
+// Delete event
+async deleteEvent (req, res) {
+  console.log(req.params.id)
+  try {
+    await Event.findByIdAndDelete(req.params.id)
+
+    req.session.flash = { type: 'success', text: 'The event was deleted successfully.' }
+    res.redirect('/admin/game')
+  } catch (error) {
+    req.session.flash = { type: 'danger', text: error.message }
+    res.redirect('./')
+  }
+}
+
   /**
    * Admin logout.
    *

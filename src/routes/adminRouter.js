@@ -22,4 +22,6 @@ router.get('/game/addEvent', (req, res, next) => controller.eventForm(req, res, 
 
 router.post('/game/addEvent', (req, res, next) => controller.addEvent(req, res, next))
 
+router.post('/game/:id/delete', (req, res, next) => controller.deleteEvent(req, res, next))
+
 router.get('/logout', (req, res, next) => controller.logout(req, res, next))
