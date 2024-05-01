@@ -9,17 +9,17 @@ import mongoose from 'mongoose'
 
 // Create a schema for the customer.
 const eventSchema = new mongoose.Schema({
-  eventName: {
+  name: {
     type: String,
     required: true,
     trim: true
   },
-  eventDate: {
+  date: {
     type: String,
     required: true,
     trim: true
   },
-  eventTime: {
+  time: {
     type: String,
     required: true,
     trim: true

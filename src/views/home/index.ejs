@@ -47,7 +47,7 @@
         <select class="event" name="event" required>
           <option value="" disabled selected>Välj evenemang</option>
           <% viewDataEvent.forEach(event => { %>
-            <option value="<%= event.eventName %>"><%= event.eventName %> - <%= event.eventDate %> <%= event.eventTime %></option>
+            <option value="<%= event.name %>"><%= event.name %> - <%= event.date %> <%= event.time %></option>
           <% }) %>
         </select>
         <div class="underline"></div>

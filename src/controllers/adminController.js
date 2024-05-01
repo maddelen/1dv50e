@@ -101,13 +101,13 @@ async eventForm(req, res, next) {
 // post event
 async addEvent(req, res, next) {
   try {
-    const { eventName, eventDate, eventTime } = req.body
+    const { name, date, time } = req.body
 
-    const event = new Event({ eventName, eventDate, eventTime })
+    const event = new Event({ name, date, time })
     await event.save()
 
     req.session.flash = { type: 'success', text: 'Event added successfully' }
-    res.redirect('/admin/game')
+    res.redirect('./')
   } catch (error) {
     req.session.flash = { type: 'danger', text: error.message }
     res.redirect('game/addEvent')
