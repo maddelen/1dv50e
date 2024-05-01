@@ -23,13 +23,12 @@
                       <td class="customer-table">
                           <%= event.time %>
                       </td>
-                      <td class="actions-table"> <!-- Column for action buttons -->
-                          <form action="/admin/game/editEvent/<%= event._id %>" method="GET" style="display: inline;">
-                              <button type="submit">Edit</button>
-                          </form>
-                          <form action="/admin/game/<%= event._id %>/delete" method="POST" style="display: inline;">
-                              <button type="submit">Delete</button>
-                          </form>
+                      <td class="actions-table">
+                        <a class="nav-link" href="/admin/game/<%= event._id %>/editEvent">Edit</a>
+
+                        <form action="/admin/game/<%= event._id %>/delete" method="POST" style="display: inline;">
+                          <button type="submit">Delete</button>
+                        </form>
                       </td>
                   </tr>
               <% }) %>

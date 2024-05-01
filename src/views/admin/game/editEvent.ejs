@@ -1,0 +1,29 @@
+<!-- Update Event Form -->
+<h1>Edit Event</h1>
+<form class="row g-3" method="post" action="/admin/game/<%= viewData?._id %>/editEvent">
+  <div class="col-md-12">
+    <label class="form-label" for="name">
+      Event Name
+    </label>
+    <input type="text" class="form-control" id="name" name="name"
+      placeholder="Edit event name here" value="<%= viewData?.name %>" required="required"
+      autofocus="autofocus" />
+  </div>
+  <div class="col-md-12">
+    <label class="form-label" for="time">
+      Event Time
+    </label>
+    <input type="time" class="form-control" id="time" name="time"
+      value="<%= viewData?.time %>" required="required" />
+  </div>
+  <div class="col-md-12">
+    <label class="form-label" for="date">
+      Event Date
+    </label>
+    <input type="date" class="form-control" id="date" name="date"
+      value="<%= viewData?.date %>" required="required" />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Edit</button>
+  </div>
+</form>

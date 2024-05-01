@@ -116,7 +116,6 @@ async addEvent(req, res, next) {
 
 // Delete event
 async deleteEvent (req, res) {
-  console.log(req.params.id)
   try {
     await Event.findByIdAndDelete(req.params.id)
 
@@ -125,6 +124,38 @@ async deleteEvent (req, res) {
   } catch (error) {
     req.session.flash = { type: 'danger', text: error.message }
     res.redirect('./')
+  }
+}
+
+async editEvent (req, res) {
+  try {
+    const event = await Event.findById(req.params.id)
+
+    res.render('admin/game/editEvent', { viewData: event.toObject() })
+  } catch (error) {
+    req.session.flash = { type: 'danger', text: error.message }
+    res.redirect('..')
+  }
+}
+
+//Edit event
+async editEventData (req, res) {
+  try {
+    const event = await Event.findById(req.params.id)
+
+    if (event) {
+      event.name = req.body.name
+      event.date = req.body.date
+      event.time = req.body.time
+
+      await event.save()
+
+      req.session.flash = { type: 'success', text: 'The event was updated successfully.' }
+    }
+    res.redirect('/admin/game')
+  } catch (error) {
+    req.session.flash = { type: 'danger', text: error.message }
+    res.redirect('./editEvent')
   }
 }
 
