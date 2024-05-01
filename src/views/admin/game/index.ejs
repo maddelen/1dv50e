@@ -1,41 +1,43 @@
 <div class="attendies-content">
   <h1>Event</h1>
+  <a class="add-event-button" href="/admin/game/addEvent">Add Event</a>
   <table class="table-striped">
-    <thead>
-      <a class="add-event-button" href="/admin/game/addEvent">Add Event</a>
-      <tr>
-        <th>Namn</th>
-        <th>Datum</th>
-        <th>Tid</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if (viewDataEvent?.length > 0) { %>
-        <% viewDataEvent.forEach(event => { %>
+      <thead>
           <tr>
-            <td class="name-table">
-              <%= event.name %>
-            </td>
-            <td class="company-table">
-              <%= event.date %>
-            </td>
-            <td class="customer-table">
-              <%= event.time %>
-            </td>
+              <th>Namn</th>
+              <th>Datum</th>
+              <th>Tid</th>
+              <th></th> <!-- New column for buttons -->
           </tr>
-        <% }) %>
-        </tbody>
-      </table>
-  <% } else { %>
-  <table class="table table-striped">
-    <tbody>
-        <tr>
-          <td>
-            Inga event hittades.
-          </td>
-        </tr>
-    </tbody>
+      </thead>
+      <tbody>
+          <% if (viewDataEvent?.length > 0) { %>
+              <% viewDataEvent.forEach(event => { %>
+                  <tr>
+                      <td class="name-table">
+                          <%= event.name %>
+                      </td>
+                      <td class="company-table">
+                          <%= event.date %>
+                      </td>
+                      <td class="customer-table">
+                          <%= event.time %>
+                      </td>
+                      <td class="actions-table"> <!-- Column for action buttons -->
+                          <form action="/admin/game/editEvent/<%= event._id %>" method="GET" style="display: inline;">
+                              <button type="submit">Edit</button>
+                          </form>
+                          <form action="/admin/game/deleteEvent/<%= event._id %>" method="POST" style="display: inline;">
+                              <button type="submit">Delete</button>
+                          </form>
+                      </td>
+                  </tr>
+              <% }) %>
+          <% } else { %>
+              <tr>
+                  <td colspan="4">Inga event hittades.</td>
+              </tr>
+          <% } %>
+      </tbody>
   </table>
-  <% } %>
 </div>
-
