@@ -6,6 +6,7 @@
  */
 
 import { Customer } from '../models/customer.js'
+import { Event } from '../models/event.js'
 
 /**
  * Encapsulates a controller.
@@ -19,8 +20,13 @@ export class HomeController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
-  index (req, res, next) {
-    res.render('home/index')
+  async index (req, res, next) {
+    try {
+      const viewDataEvent = await Event.find()
+      res.render('home/index', { viewDataEvent })
+    } catch (error) {
+      next(error)
+    }
   }
 
   async formPost(req, res, next) {
@@ -32,7 +38,7 @@ export class HomeController {
         email: req.body.email,
         guests: req.body.guests,
         event: req.body.event
-      });
+      })
   
       await customer.save()
   

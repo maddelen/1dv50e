@@ -19,6 +19,7 @@ router.get('/', (req, res, next) => controller.getCustomers(req, res, next))
 router.get('/game', (req, res, next) => controller.getEvents(req, res, next))
 
 router.get('/game/addEvent', (req, res, next) => controller.eventForm(req, res, next))
+
 router.post('/game/addEvent', (req, res, next) => controller.addEvent(req, res, next))
 
 router.get('/logout', (req, res, next) => controller.logout(req, res, next))

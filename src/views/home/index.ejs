@@ -43,17 +43,16 @@
        </div>
      </div>
      <div class="form-row">
-       <div class="input-data">
-         <select class="event" name="event" required>
-           <option value="" disabled selected>Välj evenemang</option>
-           <option value="event1">Event 1</option>
-           <option value="event2">Event 2</option>
-           <option value="event3">Event 3</option>
-           <!-- Add more options as needed -->
-         </select>
-         <div class="underline"></div>
-       </div>
-     </div>
+      <div class="input-data">
+        <select class="event" name="event" required>
+          <option value="" disabled selected>Välj evenemang</option>
+          <% viewDataEvent.forEach(event => { %>
+            <option value="<%= event.eventName %>"><%= event.eventName %> - <%= event.eventDate %> <%= event.eventTime %></option>
+          <% }) %>
+        </select>
+        <div class="underline"></div>
+      </div>
+    </div>
      <div class="form-row submit-btn">
        <div class="input-data">
          <div class="inner"></div>
