@@ -41,6 +41,39 @@
         <% }) %>
         </tbody>
       </table>
+      
+      <!-- Summary Table for Total Guests per Event -->
+      <div class="summary-table">
+        <h2>Antal anmälda per event</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Antal anmälda</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% 
+              // Create an object to store total guests per event
+              const eventTotals = {};
+
+              // Calculate total guests for each event
+              sortedData.forEach(customer => {
+                eventTotals[customer.event] = (eventTotals[customer.event] || 0) + customer.guests;
+              });
+
+              // Display total guests for each event in the summary table
+              Object.keys(eventTotals).forEach(event => { %>
+                <tr>
+                  <td><%= event %></td>
+                  <td><%= eventTotals[event] %></td>
+                </tr>
+              <% });
+            %>
+          </tbody>
+        </table>
+      </div>
+      
   <% } else { %>
   <table class="table table-striped">
     <tbody>
