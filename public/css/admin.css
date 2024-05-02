@@ -1,3 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 50px;
+}
+
+/* Style for the header */
+.navbar {
+  position: fixed;
+  background-color: #1d1d1d;
+  width: 300px;
+  height: 100vh;
+  padding: 20px;
+  color: #ffffff;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #ffffff;
+  line-height: 2.2em;
+  transition: color 200ms ease;
+}
+
+.navbar a:hover {
+  color: green;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* Style for the main content */
+main {
+  margin-left: 300px;
+  padding: 20px;
+}
+
 /* Style for the table */
 .table-striped {
     width: 100%;
@@ -5,68 +52,84 @@
     margin-bottom: 20px;
   }
   
-  /* Style for table headers */
-  .table-striped th {
-    background-color: #f5f5f5;
-    font-weight: bold;
-    text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Style for table rows */
-  .table-striped td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Alternate row background color */
-  .table-striped tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  /* Style for no data message */
-  .table-no-data {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  /* Style for centered text in no data message */
-  .table-no-data td {
-    text-align: center;
-    padding: 10px;
-  }
-  
-  /* Style for specific columns */
-  .name-table {
-    font-weight: none; /* Example: Make the Name column text bold */
-  }
-  
-  .company-table {
-    color: #000000; /* Example: Change text color for the Company column */
-  }
-  
-  .customer-table {
-    font-style: italic; /* Example: Make the Email column text italic */
-  }
-  
-  .event-table {
-    text-transform: uppercase; /* Example: Convert Event column text to uppercase */
-  }
-  
-  .guests-table {
-    text-transform: uppercase; /* Example: Center-align text in the Guests column */
-  }
+/* Style for table headers */
+.table-striped th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
 
-  .add-event-button {
-    margin: 20px 0;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #000000;
-    background-color: #eeeeee;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
+/* Style for table rows */
+.table-striped td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternate row background color */
+.table-striped tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Style for no data message */
+.table-no-data {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Style for centered text in no data message */
+.table-no-data td {
+  text-align: center;
+  padding: 10px;
+}
+
+/* Style for specific columns */
+.name-table {
+  font-weight: none;
+}
+
+.company-table {
+  color: #000000;
+}
+
+.event-table {
+  text-transform: uppercase;
+}
+
+.add-event-button {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #1d1d1d;
+  color: #ffffff;
+  display: inline-block;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.add-event-button:hover {
+  background-color: green;
+}
+
+
+/* Bootstrap icons */
+.icon-btn {
+  background-color: transparent;
+  border: none;
+  margin: 0 10px;
+  padding: 0;
+  text-align: inherit;
+  border-radius: 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.icon-btn:hover {
+  color: red;
+}

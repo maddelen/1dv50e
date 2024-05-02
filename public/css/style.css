@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-*{
+
+* {
   margin: 0;
   padding: 0;
   outline: none;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body{
+
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +28,7 @@ h1 {
 }
 
 /* Form Styling*/
-.container{
+.container {
   max-width: 800px;
   background: #fff;
   width: 800px;
@@ -34,7 +36,7 @@ h1 {
   box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-.container .text{
+.container .text {
   text-align: center;
   font-size: 41px;
   font-weight: 600;
@@ -45,25 +47,23 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-.logo{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 20px 0;
+.logo {
+  margin: 20px auto;
+  width: 150px;
 }
 
-.container form{
+.container form {
   padding: 30px 0 0 0;
 }
 
-.container form .form-row{
+.container form .form-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 32px 0;
 }
 
-form .form-row .input-data{
+form .form-row .input-data {
   width: calc(50% - 20px);
   height: 40px;
   margin: 0 0 32px 0;
@@ -90,12 +90,12 @@ form .form-row .input-data{
   color: #3498db;
 }
 
-.textarea textarea{
+.textarea textarea {
   resize: none;
   padding-top: 10px;
 }
 
-.input-data label{
+.input-data label {
   position: absolute;
   pointer-events: none;
   bottom: 10px;
@@ -103,20 +103,20 @@ form .form-row .input-data{
   transition: all 0.3s ease;
 }
 
-.textarea label{
+.textarea label {
   width: 100%;
   bottom: 40px;
   background: #fff;
 }
 
-.input-data .underline{
+.input-data .underline {
   position: absolute;
   bottom: 0;
   height: 2px;
   width: 100%;
 }
 
-.input-data .underline:before{
+.input-data .underline:before {
   position: absolute;
   content: "";
   height: 2px;
@@ -130,17 +130,17 @@ form .form-row .input-data{
 .input-data input:focus ~ .underline:before,
 .input-data input:valid ~ .underline:before,
 .textarea textarea:focus ~ .underline:before,
-.textarea textarea:valid ~ .underline:before{
+.textarea textarea:valid ~ .underline:before {
   transform: scale(1);
 }
 
-.submit-btn .input-data{
+.submit-btn .input-data {
   overflow: hidden;
   height: 45px!important;
   width: 25%!important;
 }
 
-.submit-btn .input-data .inner{
+.submit-btn .input-data .inner {
   height: 100%;
   width: 300%;
   position: absolute;
@@ -149,11 +149,11 @@ form .form-row .input-data{
   transition: all 0.4s;
 }
 
-.submit-btn .input-data:hover .inner{
+.submit-btn .input-data:hover .inner {
   left: 0;
 }
 
-.submit-btn .input-data input{
+.submit-btn .input-data input {
   background: none;
   border: none;
   color: #fff;

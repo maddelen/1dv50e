@@ -1,4 +1,4 @@
-<div class="attendies-content">
+<div class="admin-content">
   <h1>Event</h1>
   <a class="add-event-button" href="/admin/game/addEvent">Add Event</a>
   <table class="table-striped">
@@ -27,7 +27,7 @@
                         <a class="nav-link" href="/admin/game/<%= event._id %>/editEvent">Edit</a>
 
                         <form action="/admin/game/<%= event._id %>/delete" method="POST" style="display: inline;">
-                          <button type="submit">Delete</button>
+                          <button type="submit" class="icon-btn"><i class="bi bi-trash"></i></button>
                         </form>
                       </td>
                   </tr>
