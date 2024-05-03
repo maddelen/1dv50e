@@ -87,9 +87,6 @@ try {
       res.locals.username = req.session.username
     }
 
-    // console.log('USERNAME', req.session.username)
-    // console.log('REQ', req.session)
-
     // Pass the base URL to the views.
     res.locals.baseURL = baseURL
 

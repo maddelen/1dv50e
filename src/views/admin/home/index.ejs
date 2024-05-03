@@ -8,6 +8,7 @@
         <th>Epost</th>
         <th>Event</th>
         <th>Antal</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +37,13 @@
             </td>
             <td class="guests-table">
               <%= customer.guests %>
+            </td>
+            <td class="actions-table">
+              <a class="nav-link" href="/admin/customers/<%= customer._id %>/edit">Edit</a>
+
+              <form action="/admin/customers/<%= customer._id %>/delete" method="POST" style="display: inline;">
+                <button type="submit" class="icon-btn"><i class="bi bi-trash"></i></button>
+              </form>
             </td>
           </tr>
         <% }) %>
@@ -78,9 +86,7 @@
   <table class="table table-striped">
     <tbody>
         <tr>
-          <td>
-            Inga anmälningar hittades.
-          </td>
+          <td colspan="6">Inga anmälningar hittades.</td>
         </tr>
     </tbody>
   </table>

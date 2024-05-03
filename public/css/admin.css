@@ -134,6 +134,7 @@ main {
   color: red;
 }
 
+/* Style for summary of attendiees table*/
 .summary-table {
   margin-top: 20px;
   border: 1px solid #ccc;
