@@ -12,76 +12,63 @@
       </tr>
     </thead>
     <tbody>
-      <% if (viewData?.length > 0) { %>
-        <% 
-          // Sort the viewData array by the event property
-          const sortedData = viewData.sort((a, b) => {
-            if (a.event < b.event) return -1;
-            if (a.event > b.event) return 1;
-            return 0;
-          });
-        
-          sortedData.forEach(customer => { %>
+      <% if (viewData?.length > 0) { 
+        // Create an object to store total guests per event
+        const eventTotals = {};
+
+        // Display the customers in the table and calculate event totals
+        viewData.forEach(customer => {
+          // Display customer details
+      %>
           <tr>
-            <td class="name-table">
-              <%= customer.name %>
-            </td>
-            <td class="company-table">
-              <%= customer.company %>
-            </td>
-            <td class="customer-table">
-              <%= customer.email %>
-            </td>
-            <td class="event-table">
-              <%= customer.event %>
-            </td>
-            <td class="guests-table">
-              <%= customer.guests %>
-            </td>
+            <td class="name-table"><%= customer.name %></td>
+            <td class="company-table"><%= customer.company %></td>
+            <td class="customer-table"><%= customer.email %></td>
+            <td class="event-table"><%= customer.event %></td>
+            <td class="guests-table"><%= customer.guests %></td>
             <td class="actions-table">
               <a class="nav-link" href="/admin/customers/<%= customer._id %>/edit">Edit</a>
-
-              <form action="/admin/customers/<%= customer._id %>/delete" method="POST" style="display: inline;">
+              <form action="/admin/<%= customer._id %>/delete" method="POST" style="display: inline;">
                 <button type="submit" class="icon-btn"><i class="bi bi-trash"></i></button>
               </form>
             </td>
           </tr>
-        <% }) %>
-        </tbody>
-      </table>
-      
-      <!-- Summary Table for Total Guests per Event -->
-      <div class="summary-table">
-        <h2>Antal anmälda per event</h2>
-        <table>
-          <thead>
+      <% 
+          // Calculate total guests per event
+          if (!eventTotals[customer.event]) {
+            eventTotals[customer.event] = customer.guests; // Initialize if not exists
+          } else {
+            eventTotals[customer.event] += customer.guests; // Add to existing count
+          }
+        });
+      %>
+    </tbody>
+  </table>
+  
+  <!-- Summary Table for Total Guests per Event -->
+  <div class="summary-table">
+    <h2>Antal anmälda per event</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Antal anmälda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% 
+          // Display total guests for each event in the summary table
+          Object.keys(eventTotals).forEach(event => { %>
             <tr>
-              <th>Event</th>
-              <th>Antal anmälda</th>
+              <td><%= event %></td>
+              <td><%= eventTotals[event] %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% 
-              // Create an object to store total guests per event
-              const eventTotals = {};
-
-              // Calculate total guests for each event
-              sortedData.forEach(customer => {
-                eventTotals[customer.event] = (eventTotals[customer.event] || 0) + customer.guests;
-              });
-
-              // Display total guests for each event in the summary table
-              Object.keys(eventTotals).forEach(event => { %>
-                <tr>
-                  <td><%= event %></td>
-                  <td><%= eventTotals[event] %></td>
-                </tr>
-              <% });
-            %>
-          </tbody>
-        </table>
-      </div>
-      
+        <% });
+        %>
+      </tbody>
+    </table>
+  </div>
+  
   <% } else { %>
   <table class="table table-striped">
     <tbody>

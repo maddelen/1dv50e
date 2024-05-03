@@ -90,74 +90,86 @@ export class AdminController {
     }
   }
 
-async eventForm(req, res, next) {
-  try {
-    res.render('admin/game/addEvent')
-  } catch (error) {
-    next(error)
+  async eventForm(req, res, next) {
+    try {
+      res.render('admin/game/addEvent')
+    } catch (error) {
+      next(error)
+    }
   }
-}
 
-// post event
-async addEvent(req, res, next) {
-  try {
-    const { name, date, time } = req.body
+  // post event
+  async addEvent(req, res, next) {
+    try {
+      const { name, date, time } = req.body
 
-    const event = new Event({ name, date, time })
-    await event.save()
-
-    req.session.flash = { type: 'success', text: 'Event added successfully' }
-    res.redirect('./')
-  } catch (error) {
-    req.session.flash = { type: 'danger', text: error.message }
-    res.redirect('game/addEvent')
-  }
-}
-
-// Delete event
-async deleteEvent (req, res) {
-  try {
-    await Event.findByIdAndDelete(req.params.id)
-
-    req.session.flash = { type: 'success', text: 'The event was deleted successfully.' }
-    res.redirect('/admin/game')
-  } catch (error) {
-    req.session.flash = { type: 'danger', text: error.message }
-    res.redirect('./')
-  }
-}
-
-async editEvent (req, res) {
-  try {
-    const event = await Event.findById(req.params.id)
-
-    res.render('admin/game/editEvent', { viewData: event.toObject() })
-  } catch (error) {
-    req.session.flash = { type: 'danger', text: error.message }
-    res.redirect('..')
-  }
-}
-
-//Edit event
-async editEventData (req, res) {
-  try {
-    const event = await Event.findById(req.params.id)
-
-    if (event) {
-      event.name = req.body.name
-      event.date = req.body.date
-      event.time = req.body.time
-
+      const event = new Event({ name, date, time })
       await event.save()
 
-      req.session.flash = { type: 'success', text: 'The event was updated successfully.' }
+      req.session.flash = { type: 'success', text: 'Event added successfully' }
+      res.redirect('./')
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('game/addEvent')
     }
-    res.redirect('/admin/game')
-  } catch (error) {
-    req.session.flash = { type: 'danger', text: error.message }
-    res.redirect('./editEvent')
   }
-}
+
+  // Delete event
+  async deleteEvent (req, res) {
+    try {
+      await Event.findByIdAndDelete(req.params.id)
+
+      req.session.flash = { type: 'success', text: 'The event was deleted successfully.' }
+      res.redirect('/admin/game')
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('./')
+    }
+  }
+
+  async editEvent (req, res) {
+    try {
+      const event = await Event.findById(req.params.id)
+
+      res.render('admin/game/editEvent', { viewData: event.toObject() })
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('..')
+    }
+  }
+
+  //Edit event
+  async editEventData (req, res) {
+    try {
+      const event = await Event.findById(req.params.id)
+
+      if (event) {
+        event.name = req.body.name
+        event.date = req.body.date
+        event.time = req.body.time
+
+        await event.save()
+
+        req.session.flash = { type: 'success', text: 'The event was updated successfully.' }
+      }
+      res.redirect('/admin/game')
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('./editEvent')
+    }
+  }
+
+  async deleteAttendee (req, res) {
+    try {
+      await Customer.findByIdAndDelete(req.params.id)
+
+      req.session.flash = { type: 'success', text: 'The attendee was deleted successfully.' }
+      res.redirect('/admin')
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('./')
+    }
+  }
 
   /**
    * Admin logout.
