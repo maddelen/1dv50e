@@ -5,7 +5,7 @@
 | TC1 | Starta applikationen och se om man kommer till startsidan. |  Pass  | |
 | TC2 | Fylla i formuläret och slutföra en anmälan. |  Pass  | |
 | TC3 | Logga in som admin via /login. |  Pass  | |
-| TC4 | Logga ut från admin. |  Pass  | |
+| TC4 | Logga ut från admin. |  Fail  | |
 
 
 <br>

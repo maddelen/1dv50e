@@ -18,6 +18,9 @@ router.get('/', (req, res, next) => controller.getCustomers(req, res, next))
 
 router.post('/:id/delete', (req, res, next) => controller.deleteAttendee(req, res, next))
 
+router.get('/home/:id/editAttendee', (req, res, next) => controller.editAttendee(req, res, next))
+router.post('/home/:id/editAttendee', (req, res, next) => controller.editAttendeeData(req, res, next))
+
 router.get('/game', (req, res, next) => controller.getEvents(req, res, next))
 
 router.get('/game/addEvent', (req, res, next) => controller.eventForm(req, res, next))

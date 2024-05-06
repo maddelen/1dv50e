@@ -1,0 +1,43 @@
+<!-- Update Customer Form -->
+<h1>Edit Customer</h1>
+<form class="row g-3" method="post" action="/editAttendee/<%= viewData?._id %>/editAttendee">
+  <div class="col-md-12">
+    <label class="form-label" for="name">
+      Name
+    </label>
+    <input type="text" class="form-control" id="name" name="name"
+      placeholder="Edit name here" value="<%= viewData?.name %>" required="required"
+      autofocus="autofocus" />
+  </div>
+  <div class="col-md-12">
+    <label class="form-label" for="company">
+      Company
+    </label>
+    <input type="text" class="form-control" id="company" name="company"
+      placeholder="Edit company name here" value="<%= viewData?.company %>" required="required" />
+  </div>
+  <div class="col-md-12">
+    <label class="form-label" for="email">
+      Email
+    </label>
+    <input type="email" class="form-control" id="email" name="email"
+      placeholder="Edit email here" value="<%= viewData?.email %>" required="required" />
+  </div>
+  <div class="col-md-12">
+    <label class="form-label" for="event">
+      Event
+    </label>
+    <input type="text" class="form-control" id="event" name="event"
+      placeholder="Edit event name here" value="<%= viewData?.event %>" required="required" />
+  </div>
+  <div class="col-md-12">
+    <label class="form-label" for="guests">
+      Guests
+    </label>
+    <input type="number" class="form-control" id="guests" name="guests"
+      placeholder="Edit number of guests here" value="<%= viewData?.guests %>" required="required" />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Edit</button>
+  </div>
+</form>

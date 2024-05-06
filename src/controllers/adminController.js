@@ -171,6 +171,40 @@ export class AdminController {
     }
   }
 
+  async editAttendee (req, res) {
+    try {
+      const customer = await Customer.findById(req.params.id)
+
+      res.render('admin/home/editAttendee', { viewData: customer.toObject() })
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('..')
+    }
+  }
+
+  //Edit event
+  async editAttendeeData (req, res) {
+    try {
+      const customer = await Customer.findById(req.params.id)
+
+      if (customer) {
+        customer.name = req.body.name
+        customer.company = req.body.company
+        customer.email = req.body.email
+        customer.guests = req.body.guests
+        customer.event = req.body.event
+        
+        await customer.save()
+
+        req.session.flash = { type: 'success', text: 'The attendee was updated successfully.' }
+      }
+      res.redirect('/admin')
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      res.redirect('./')
+    }
+  }
+
   /**
    * Admin logout.
    *

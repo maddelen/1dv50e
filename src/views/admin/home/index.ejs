@@ -27,7 +27,7 @@
             <td class="event-table"><%= customer.event %></td>
             <td class="guests-table"><%= customer.guests %></td>
             <td class="actions-table">
-              <a class="nav-link" href="/admin/customers/<%= customer._id %>/edit">Edit</a>
+              <a class="nav-link" href="/admin/home/<%= customer._id %>/editAttendee">Edit</a>
               <form action="/admin/<%= customer._id %>/delete" method="POST" style="display: inline;">
                 <button type="submit" class="icon-btn"><i class="bi bi-trash"></i></button>
               </form>
