@@ -202,3 +202,35 @@ main {
 .summary-table tbody tr:hover {
   background-color: #f0f0f0;
 }
+
+.alert-danger {
+  padding: 10px;
+  background-color: red;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.alert-success {
+  padding: 10px;
+  background-color: green;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.center-content {
+  display: block;
+  margin: auto;
+  max-width: 230px;
+}
+
+.center {
+  text-align: center;
+}

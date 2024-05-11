@@ -12,24 +12,24 @@ export const router = express.Router()
 
 const controller = new AdminController()
 
+// Routes
 router.post('/login', (req, res, next) => controller.loginAdmin(req, res, next))
 
-router.get('/', (req, res, next) => controller.getCustomers(req, res, next))
+router.get('/', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.getCustomers(req, res, next))
 
-router.post('/:id/delete', (req, res, next) => controller.deleteAttendee(req, res, next))
+router.post('/:id/delete', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.deleteAttendee(req, res, next))
 
-router.get('/home/:id/editAttendee', (req, res, next) => controller.editAttendee(req, res, next))
-router.post('/home/:id/editAttendee', (req, res, next) => controller.editAttendeeData(req, res, next))
+router.get('/home/:id/editAttendee', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.editAttendee(req, res, next))
+router.post('/home/:id/editAttendee', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.editAttendeeData(req, res, next))
 
-router.get('/game', (req, res, next) => controller.getEvents(req, res, next))
+router.get('/game', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.getEvents(req, res, next))
 
-router.get('/game/addEvent', (req, res, next) => controller.eventForm(req, res, next))
+router.get('/game/addEvent', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.eventForm(req, res, next))
+router.post('/game/addEvent', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.addEvent(req, res, next))
 
-router.post('/game/addEvent', (req, res, next) => controller.addEvent(req, res, next))
+router.post('/game/:id/delete', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.deleteEvent(req, res, next))
 
-router.post('/game/:id/delete', (req, res, next) => controller.deleteEvent(req, res, next))
-
-router.get('/game/:id/editEvent', (req, res, next) => controller.editEvent(req, res, next))
-router.post('/game/:id/editEvent', (req, res, next) => controller.editEventData(req, res, next))
+router.get('/game/:id/editEvent', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.editEvent(req, res, next))
+router.post('/game/:id/editEvent', (req, res, next) => controller.isLoggedIn(req, res, next), (req, res, next) => controller.editEventData(req, res, next))
 
 router.get('/logout', (req, res, next) => controller.logout(req, res, next))

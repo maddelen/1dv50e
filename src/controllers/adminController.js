@@ -13,6 +13,15 @@ import { Event } from '../models/event.js'
  * Encapsulates a controller.
  */
 export class AdminController {
+  async isLoggedIn (req, res, next) {
+    if (req.session.admin) {
+      return next()
+    }
+
+    req.session.flash = { type: 'danger', text: 'You need to be logged in to access this page' }
+    res.redirect('/login')
+  }
+
   /**
    * Render the login page.
    *
@@ -73,9 +82,8 @@ export class AdminController {
     }
   }
 
-// Get events
   /**
-   * Admin page.
+   * Render the event page.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
@@ -90,6 +98,13 @@ export class AdminController {
     }
   }
 
+  /**
+   * Render the event form.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   async eventForm(req, res, next) {
     try {
       res.render('admin/game/addEvent')
@@ -98,7 +113,13 @@ export class AdminController {
     }
   }
 
-  // post event
+    /**
+   * Add event.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   async addEvent(req, res, next) {
     try {
       const { name, date, time } = req.body
@@ -114,7 +135,12 @@ export class AdminController {
     }
   }
 
-  // Delete event
+  /**
+   * Delete event.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async deleteEvent (req, res) {
     try {
       await Event.findByIdAndDelete(req.params.id)
@@ -127,6 +153,12 @@ export class AdminController {
     }
   }
 
+  /**
+   * Render the edit event page.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async editEvent (req, res) {
     try {
       const event = await Event.findById(req.params.id)
@@ -138,7 +170,12 @@ export class AdminController {
     }
   }
 
-  //Edit event
+  /**
+   * Edit event data.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async editEventData (req, res) {
     try {
       const event = await Event.findById(req.params.id)
@@ -159,6 +196,12 @@ export class AdminController {
     }
   }
 
+  /**
+   * Delete attendee.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async deleteAttendee (req, res) {
     try {
       await Customer.findByIdAndDelete(req.params.id)
@@ -171,6 +214,12 @@ export class AdminController {
     }
   }
 
+  /**
+   * Render the edit attendee page.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async editAttendee (req, res) {
     try {
       const customer = await Customer.findById(req.params.id)
@@ -182,7 +231,12 @@ export class AdminController {
     }
   }
 
-  //Edit event
+  /**
+   * Edit attendee data.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async editAttendeeData (req, res) {
     try {
       const customer = await Customer.findById(req.params.id)
@@ -213,9 +267,14 @@ export class AdminController {
    */
   async logout (req, res) {
     try {
-      req.session.destroy()
-
-      res.redirect('/login')
+      req.session.destroy(err => {
+        if (err) {
+          // handle error
+        } else {
+          res.clearCookie(process.env.SESSION_NAME)
+          res.redirect('/login')
+        }
+      })
     } catch (error) {
       res.redirect('/login')
     }
