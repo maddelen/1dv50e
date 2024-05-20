@@ -153,6 +153,6 @@ Vid klick på ikonen försvinner anmälningen ur tabellen och ett meddelande vis
 <b>Förväntad resultat:</b>
 Vid klick på log out så ska användaren slussas till inloggningssidan.
 
-![Start](/src/images/start.png)
+![Start](/Testrapport/images/login.png)
 
 </details>
