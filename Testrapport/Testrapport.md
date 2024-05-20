@@ -8,7 +8,7 @@
 | TC4 | Logga in med korrekt username och password som admin via /login. |  Pass  | |
 | TC5 | Redigera antalet anmälda i ett sällskap |  Pass  | |
 | TC6 | Ta bort en anmälan. |  Pass  | |
-| TC | Logga ut från admin. |  Fail  | |
+| TC7 | Logga ut från admin. |  Pass  | |
 
 Redigera antalet anmälda i ett sällskap
 <br>
@@ -151,7 +151,7 @@ Vid klick på ikonen försvinner anmälningen ur tabellen och ett meddelande vis
 7. Klicka på länken och login sidan ska visas <br>
 
 <b>Förväntad resultat:</b>
-Ett meddelande bör visas som .
+Vid klick på log out så ska användaren slussas till inloggningssidan.
 
 ![Start](/src/images/start.png)
 

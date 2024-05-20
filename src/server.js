@@ -10,7 +10,6 @@ import expressLayouts from 'express-ejs-layouts'
 import session from 'express-session'
 import logger from 'morgan'
 import helmet from 'helmet'
-import MongoStore from 'connect-mongo'
 import path from 'path'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -24,7 +23,6 @@ try {
 
   // Creates an Express application.
   const app = express()
-
 
   // Appends security-related HTTP headers to every HTTP request sent.
   app.use(helmet())

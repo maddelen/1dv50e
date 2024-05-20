@@ -29,6 +29,13 @@ export class HomeController {
     }
   }
 
+  /**
+   * Post a form.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   async formPost(req, res, next) {
     try {
 
